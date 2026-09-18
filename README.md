@@ -26,6 +26,10 @@ Struktur mengikuti pemisahan tiga lapis: presentasi (css/), struktur alur per la
 - **FGD (RTL)**: identitas OPD (Provinsi, kategori OPD dari `getOPD` atau manual, Alamat OPD) plus Nama dan Jabatan peserta yang mengisi, diisi sekali di awal, karena RTL diisi langsung oleh peserta FGD bukan petugas pewawancara. Semua kegiatan yang ditambahkan dikirim bersamaan lewat `submitRTL`. Respons membawa file Excel base64 yang langsung diunduh di browser.
 - **Edit isian yang sudah terkirim**: lewat link "Cari & Edit Isian" di header. B1/B2 dicari lewat `getIsian` pakai Kode Referensi, string Nama/Jabatan Responden dan Nama/Instansi Petugas yang tergabung dipecah balik jadi baris-baris narasumber/petugas (`splitJoined` di `js/util.js`). RTL dicari lewat `getIsianRTL` pakai Provinsi + Nama OPD, mengembalikan semua kegiatan sekaligus dengan `idIsian` masing-masing. Submit ulang dari mode edit memanggil `updateB1`/`updateB2`/`updateRTL`, bukan `submitB1`/`submitB2`/`submitRTL`.
 - Rekap lintas lokus (`getRekap`) sudah ada di `js/api.js`, tapi belum ada tampilannya. Menyusul.
+
+## Cache Data Referensi
+
+`js/cache.js` menyimpan provinsi, kab/kota, sekolah, OPD, petugas, dan bank soal ke `localStorage` selama `CACHE_TTL_MS` (default 3 jam), bukan cuma di memori. Efeknya, Apps Script cuma benar-benar dipanggil sekali per data per perangkat dalam jendela waktu itu, pembukaan berikutnya instan. Kalau Bank Data baru diedit dan butuh langsung terlihat di aplikasi, klik "Muat Ulang Data" di header, ini menghapus cache lokal (`hapusCacheLokal()`) lalu reload halaman.
 - Draf (jawaban yang belum disubmit) disimpan ke localStorage tiap kali diketik. Begitu satu instrumen atau seluruh kegiatan RTL berhasil disubmit, hasilnya bersifat final, aplikasi ini tidak menyediakan jalur edit ulang ke server.
 - Semua request POST memakai header `Content-Type: text/plain;charset=utf-8`, bukan `application/json`, sesuai catatan CORS di API_CONTRACT.md.
 - Semua respons backend dicek lewat `ok`, bukan HTTP status code. Kalau `ok:false`, pesan error backend ditampilkan lewat `alert()` atau banner sederhana di layar.
