@@ -52,27 +52,27 @@ window.Cache = window.Cache || {
 };
 
 async function cachedProvinsi() {
-  if (Cache.provinsi === null) {
+  if (!Cache.provinsi || !Cache.provinsi.length) {
     const persisted = bacaCacheLokal('ref_provinsi');
-    if (persisted !== undefined) {
+    if (persisted && persisted.length) {
       Cache.provinsi = persisted;
     } else {
       Cache.provinsi = await apiGetProvinsi();
-      simpanCacheLokal('ref_provinsi', Cache.provinsi);
+      if (Cache.provinsi && Cache.provinsi.length) simpanCacheLokal('ref_provinsi', Cache.provinsi);
     }
   }
   return Cache.provinsi;
 }
 
 async function cachedKabKota(provinsi) {
-  if (!(provinsi in Cache.kabKota)) {
+  if (!Cache.kabKota[provinsi] || !Cache.kabKota[provinsi].length) {
     const storageKey = 'ref_kabkota_' + provinsi;
     const persisted = bacaCacheLokal(storageKey);
-    if (persisted !== undefined) {
+    if (persisted && persisted.length) {
       Cache.kabKota[provinsi] = persisted;
     } else {
       Cache.kabKota[provinsi] = await apiGetKabKota(provinsi);
-      simpanCacheLokal(storageKey, Cache.kabKota[provinsi]);
+      if (Cache.kabKota[provinsi] && Cache.kabKota[provinsi].length) simpanCacheLokal(storageKey, Cache.kabKota[provinsi]);
     }
   }
   return Cache.kabKota[provinsi];
@@ -80,55 +80,55 @@ async function cachedKabKota(provinsi) {
 
 async function cachedSekolah(provinsi, kabKota) {
   const memKey = provinsi + '|' + kabKota;
-  if (!(memKey in Cache.sekolah)) {
+  if (!Cache.sekolah[memKey] || !Cache.sekolah[memKey].length) {
     const storageKey = 'ref_sekolah_' + memKey;
     const persisted = bacaCacheLokal(storageKey);
-    if (persisted !== undefined) {
+    if (persisted && persisted.length) {
       Cache.sekolah[memKey] = persisted;
     } else {
       Cache.sekolah[memKey] = await apiGetSekolah(provinsi, kabKota);
-      simpanCacheLokal(storageKey, Cache.sekolah[memKey]);
+      if (Cache.sekolah[memKey] && Cache.sekolah[memKey].length) simpanCacheLokal(storageKey, Cache.sekolah[memKey]);
     }
   }
   return Cache.sekolah[memKey];
 }
 
 async function cachedOPD(provinsi) {
-  if (!(provinsi in Cache.opd)) {
+  if (!Cache.opd[provinsi] || !Cache.opd[provinsi].length) {
     const storageKey = 'ref_opd_' + provinsi;
     const persisted = bacaCacheLokal(storageKey);
-    if (persisted !== undefined) {
+    if (persisted && persisted.length) {
       Cache.opd[provinsi] = persisted;
     } else {
       Cache.opd[provinsi] = await apiGetOPD(provinsi);
-      simpanCacheLokal(storageKey, Cache.opd[provinsi]);
+      if (Cache.opd[provinsi] && Cache.opd[provinsi].length) simpanCacheLokal(storageKey, Cache.opd[provinsi]);
     }
   }
   return Cache.opd[provinsi];
 }
 
 async function cachedPetugas() {
-  if (Cache.petugas === null) {
+  if (!Cache.petugas || !Cache.petugas.length) {
     const persisted = bacaCacheLokal('ref_petugas');
-    if (persisted !== undefined) {
+    if (persisted && persisted.length) {
       Cache.petugas = persisted;
     } else {
       Cache.petugas = await apiGetPetugas();
-      simpanCacheLokal('ref_petugas', Cache.petugas);
+      if (Cache.petugas && Cache.petugas.length) simpanCacheLokal('ref_petugas', Cache.petugas);
     }
   }
   return Cache.petugas;
 }
 
 async function cachedPertanyaan(instrumen) {
-  if (!(instrumen in Cache.pertanyaan)) {
+  if (!Cache.pertanyaan[instrumen] || !Cache.pertanyaan[instrumen].length) {
     const storageKey = 'ref_pertanyaan_' + instrumen;
     const persisted = bacaCacheLokal(storageKey);
-    if (persisted !== undefined) {
+    if (persisted && persisted.length) {
       Cache.pertanyaan[instrumen] = persisted;
     } else {
       Cache.pertanyaan[instrumen] = await apiGetPertanyaan(instrumen);
-      simpanCacheLokal(storageKey, Cache.pertanyaan[instrumen]);
+      if (Cache.pertanyaan[instrumen] && Cache.pertanyaan[instrumen].length) simpanCacheLokal(storageKey, Cache.pertanyaan[instrumen]);
     }
   }
   return Cache.pertanyaan[instrumen];
