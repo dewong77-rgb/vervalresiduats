@@ -8,6 +8,16 @@ function initApp() {
   if (existing) App.session = existing;
   window.addEventListener('hashchange', renderRoute);
   prefetchAwal();
+
+  const linkMuatUlang = document.getElementById('link-muat-ulang');
+  if (linkMuatUlang) {
+    linkMuatUlang.onclick = function (e) {
+      e.preventDefault();
+      hapusCacheLokal();
+      location.reload();
+    };
+  }
+
   if (existing && !location.hash) {
     // Draf belum selesai ditemukan, langsung balik ke layar terakhir alih-alih Pilih Lokus.
     location.hash = existing.jenis === 'fgd' ? '#/daftar-kegiatan' : '#/form';
