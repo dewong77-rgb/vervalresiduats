@@ -45,6 +45,7 @@ Views.renderPilihLokus = async function (root) {
   try {
     provinsiList = await cachedProvinsi();
   } catch (e) {
+    console.error('cachedProvinsi gagal:', e);
     area.innerHTML = '<div class="empty-hint">Gagal memuat provinsi: ' + escapeHtml(e.message) + '</div>';
     return;
   }
@@ -101,7 +102,8 @@ Views.renderPilihLokus = async function (root) {
         }).join('');
         loadSekolah();
       } catch (e) {
-        kabSel.innerHTML = '<option value="">Gagal memuat</option>';
+        console.error('loadKabKota gagal:', e);
+        kabSel.innerHTML = '<option value="">Gagal memuat: ' + escapeHtml(e.message || e) + '</option>';
       }
     }
 
@@ -120,6 +122,7 @@ Views.renderPilihLokus = async function (root) {
         };
         if (!data.length) manualBox.style.display = 'block';
       } catch (e) {
+        console.error('loadSekolah gagal:', e);
         sekSel.innerHTML = '<option value="manual">Sekolah lain (isi manual)</option>';
         sekSel.dataset.list = '[]';
         manualBox.style.display = 'block';
@@ -161,6 +164,7 @@ Views.renderPilihLokus = async function (root) {
         };
         if (!data.length) manualBox.style.display = 'block';
       } catch (e) {
+        console.error('loadOpd gagal:', e);
         opdSel.innerHTML = '<option value="manual">OPD lain (isi manual)</option>';
         opdSel.dataset.list = '[]';
         manualBox.style.display = 'block';
