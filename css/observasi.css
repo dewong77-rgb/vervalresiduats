@@ -1,0 +1,2 @@
+.accent-observasi { border-left: 3px solid var(--color-jingga); padding-left: var(--space-3); }
+.dot-observasi { width: 8px; height: 8px; border-radius: 50%; background: var(--color-jingga); display: inline-block; margin-right: var(--space-2); }
