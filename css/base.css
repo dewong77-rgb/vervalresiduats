@@ -1,0 +1,468 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-base);
+  background: var(--bg-page);
+  color: var(--text-dark);
+}
+
+#app { min-height: 100vh; }
+
+/* ---------- Header ---------- */
+
+.app-header {
+  background: var(--color-putih);
+  border-bottom: 1px solid var(--color-abu-line);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.app-header h1 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.app-header .subtitle {
+  font-size: 12px;
+  color: var(--color-abu);
+  margin-top: 2px;
+}
+
+.header-links {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-jingga);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-links a:hover { text-decoration: underline; }
+
+/* ---------- Layout ---------- */
+
+.screen {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-abu);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  background: var(--color-putih);
+  border: 1px solid var(--color-abu-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* ---------- Fields ---------- */
+
+.field { margin-bottom: var(--space-4); }
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: var(--space-2);
+}
+
+.field .hint {
+  font-size: 12px;
+  color: var(--color-abu);
+  margin-top: var(--space-1);
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-abu-line);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: var(--font-base);
+  background: var(--color-putih);
+  color: var(--text-dark);
+}
+
+.field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--color-jingga);
+  outline-offset: 1px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-base);
+}
+
+.btn-primary {
+  background: var(--color-jingga);
+  color: var(--color-putih);
+}
+.btn-primary:hover { opacity: 0.92; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--color-jingga);
+  color: var(--color-jingga);
+  padding: 10px 20px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--color-abu);
+  padding: 8px 4px;
+  text-decoration: underline;
+}
+
+.btn-row {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  flex-wrap: wrap;
+}
+
+/* ---------- Badges ---------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-belum { background: var(--status-belum-bg); color: var(--status-belum-text); }
+.badge-proses { background: var(--status-proses-bg); color: var(--status-proses-text); }
+.badge-selesai { background: var(--status-selesai-bg); color: var(--status-selesai-text); }
+
+/* ---------- Progress bar (jawaban per form) ---------- */
+
+.progress-wrap { margin-bottom: var(--space-5); }
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--status-belum-bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-jingga);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.progress-label {
+  font-size: 12px;
+  color: var(--color-abu);
+  margin-top: var(--space-2);
+}
+
+/* ---------- List rows ---------- */
+
+.list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-abu-line);
+  cursor: pointer;
+}
+.list-row:last-child { border-bottom: none; }
+.list-row:hover { background: var(--bg-page); }
+
+.list-row-static {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-abu-line);
+}
+.list-row-static:last-child { border-bottom: none; }
+
+.empty-hint {
+  font-size: 13px;
+  color: var(--color-abu);
+  padding: var(--space-4) 0;
+  text-align: center;
+}
+
+/* ---------- Loading ---------- */
+
+.loading-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) 0;
+  color: var(--color-abu);
+  font-size: 13px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--color-abu-line);
+  border-top-color: var(--color-jingga);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Draft banner ---------- */
+
+.draft-banner {
+  background: var(--color-jingga-soft);
+  border: 1px solid var(--color-jingga);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* ---------- Instrumen info (deskripsi kegiatan) ---------- */
+
+.instrumen-info {
+  background: var(--bg-page);
+  border: 1px solid var(--color-abu-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.instrumen-info p { margin: 0 0 var(--space-3) 0; }
+.instrumen-info p:last-child { margin-bottom: 0; }
+
+/* ---------- Person rows (narasumber/petugas) ---------- */
+
+.person-row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin-bottom: var(--space-3);
+}
+
+.person-row .field { flex: 1; margin-bottom: 0; }
+
+.btn-hapus-row {
+  background: transparent;
+  border: 1px solid var(--color-abu-line);
+  color: var(--color-abu);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 22px;
+}
+.btn-hapus-row:hover { border-color: var(--color-jingga); color: var(--color-jingga); }
+
+/* ---------- Target responden radio cards ---------- */
+
+.target-options {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.target-option {
+  flex: 1;
+  min-width: 220px;
+  border: 2px solid var(--color-abu-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  cursor: pointer;
+  background: var(--color-putih);
+  display: block;
+}
+
+.target-option input { display: none; }
+
+.target-option .opt-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: var(--space-1);
+}
+
+.target-option .opt-desc {
+  font-size: 12px;
+  color: var(--color-abu);
+}
+
+.target-option:has(input:checked) {
+  border-color: var(--color-jingga);
+  background: var(--color-jingga-soft);
+}
+
+/* ---------- Progres page (getProgress) ---------- */
+
+.progress-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-abu-line);
+}
+
+.progress-tab {
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-abu);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font-base);
+}
+
+.progress-tab.active {
+  color: var(--color-jingga);
+  border-bottom-color: var(--color-jingga);
+}
+
+.progress-group {
+  background: var(--color-putih);
+  border: 1px solid var(--color-abu-line);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+}
+
+.progress-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  cursor: pointer;
+}
+
+.progress-group-header:hover { background: var(--bg-page); }
+
+.progress-group-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.progress-group-sub {
+  font-size: 12px;
+  color: var(--color-abu);
+  margin-top: 2px;
+}
+
+.progress-group-chevron {
+  color: var(--color-abu);
+  font-size: 12px;
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.progress-group.open .progress-group-chevron {
+  transform: rotate(90deg);
+}
+
+.progress-group-body {
+  display: none;
+  padding: 0 var(--space-4) var(--space-4);
+  border-top: 1px solid var(--color-abu-line);
+}
+
+.progress-group.open .progress-group-body {
+  display: block;
+  padding-top: var(--space-3);
+}
+
+.progress-group-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.tag-info {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--color-kuning-soft);
+  color: var(--color-jingga);
+  margin-left: var(--space-2);
+}
+
+.progress-subheading {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-abu);
+  margin: var(--space-4) 0 var(--space-2) 0;
+}

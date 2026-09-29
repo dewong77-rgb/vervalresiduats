@@ -1,0 +1,22 @@
+/* Aksen khusus alur FGD OPD (RTL). Warna dasar & komponen bersama ada di
+   variables.css & base.css — file ini hanya menambahkan aksen. */
+
+.accent-fgd {
+  border-left: 3px solid var(--color-kuning);
+  padding-left: var(--space-3);
+}
+
+.dot-fgd {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-kuning);
+  display: inline-block;
+  margin-right: var(--space-2);
+}
+
+.btn-tambah-kegiatan {
+  background: var(--color-kuning-soft);
+  color: var(--text-dark);
+  border: 1px dashed var(--color-kuning);
+}
